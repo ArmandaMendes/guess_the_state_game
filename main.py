@@ -1,5 +1,10 @@
 import turtle
 import pandas
+import tkinter as tk
+from tkinter import messagebox
+
+root = tk.Tk()
+root.withdraw()
 
 data = pandas.read_csv("50_states.csv")
 screen = turtle.Screen()
@@ -29,6 +34,7 @@ while len(guessed_states) < len(list_of_states):
                 learning_data.to_csv("states_to_learn.csv")
 
         break
+
     if answer_state in list_of_states:
         guessed_states.append(answer_state)
             #create the turtle:
@@ -39,6 +45,22 @@ while len(guessed_states) < len(list_of_states):
         state_data = data[data.state == answer_state]
         t.goto(state_data.x.item(), state_data.y.item())
         t.write(answer_state)
+
+    else:
+        #show a message to advise user the answer is wrong
+        messagebox.showinfo(title="Invalid State",
+                            message="That is not a valid state or already guessed. \n Try again or type Exit to end the game")
+
+
+
+
+
+
+
+
+
+
+
 
 
 
